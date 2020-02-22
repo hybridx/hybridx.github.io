@@ -1,0 +1,28 @@
+name: hybridX push process
+on: 
+  push:
+    branches: 
+      - 'develop'
+jobs:
+  build:
+    runs-on: [ubuntu-latest]
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+      - name: Setup node
+        run: npm ci
+        env: 
+          CI: true
+          name: Test
+          run: npm test
+      - name: Build
+        run: npm run build
+      - name: Deploy
+        if: success()
+        uses: JamesIves/github-pages-deploy-action@releases/v3
+        with: 
+          ACCESS_TOKEN: ${{ secrets.GH_PAT }}
+          BRANCH: master
+          FOLDER: dist
