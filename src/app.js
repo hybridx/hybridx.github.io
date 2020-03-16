@@ -2,4 +2,4 @@
 import './main.scss';
 
 // Webcomponent imports
-import 'copyright-x/index.js';
+import 'copyright-x/dist/copyright-x';

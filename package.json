@@ -46,7 +46,7 @@
     "webpack-merge": "^4.2.2"
   },
   "dependencies": {
-    "copyright-x": "^1.0.3",
+    "copyright-x": "^1.0.4",
     "path": "^0.12.7"
   }
 }
