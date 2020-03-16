@@ -16,8 +16,6 @@
 
 ### 🏠 [Homepage](https://hybridx.github.io)
 
-### ✨ [Demo](https://hybridx.github.io)
-
 ## Author
 
 👤 **Deepesh Nair <byakuyan58@gmail.com>**
