@@ -1,0 +1,63 @@
+@import './mixin';
+
+.container {
+    display: inline-block;
+    .clock {
+      height: 350px;
+      width: 350px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: url('../assets/clock.png');
+      background-size: cover;
+      border: 4px solid #151515;
+      border-radius: 50%;
+      box-shadow: 0 -15px 15px rgba(0, 0, 0, 0.91), inset 0 -15px 15px rgba(14, 14, 14, 0.82), 0 -15px 15px rgb(6, 6, 6), inset 0 -15px 15px rgba(16, 16, 16, 0.88);
+      &:before {
+        content: '';
+        position: absolute;
+        height: 15px;
+        width: 15px;
+        background: #fafafa;
+        border-radius: 50%;
+        z-index: 10000;
+      }
+      .hour, .min, .sec {
+        position: absolute;
+      }
+      .hr, .mn, .sc {
+        display: flex;
+        justify-content: center;
+        position: absolute;
+        border-radius: 50%;
+      }
+      .hour, .hr {
+        height: 160px;
+        width: 160px;
+      }
+      .min, .mn {
+        height: 190px;
+        width: 190px;
+      }
+      .sec, .sc {
+        width: 230px;
+        height: 230px;
+      }
+      .hr:before {
+        @include hand;
+      }
+      .mn:before {
+        @include hand;
+        background: #fff;
+        height: 90px;
+        width: 4px;
+      }
+      .sc:before {
+        @include hand;
+        background: #fff;
+        height: 100px;
+        width: 2px;
+        z-index: 11;
+      }
+    }
+  }

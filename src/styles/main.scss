@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css?family=Red+Hat+Text&display=swap');
+@import './mixin';
+@import './clock';
+
+html {
+  scroll-behavior: smooth;
+  margin: 0;
+  padding: 0;
+  font-family: 'Red Hat Text';
+  background: url('../assets/background.png');
+}
+
+nav {
+  height: 4rem;
+  color: #EBEBEB;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  i {
+    margin-left: 1rem;
+  }
+}
+
+.main {
+  margin-top: 10rem;
+  &__text {
+    color: #ebebebbf;
+    text-align: center;
+    font-size: 9rem;
+  }
+  &__break-line {
+    width: 40rem;
+    height: 3px;
+    background-color: #fafafa;
+    margin: auto;
+  }
+}
+
+footer {
+  text-align: center;
+}
+
+@media screen and (max-width: 655px) {
+  .main {
+    &__text {
+      font-size: 5rem;
+    }
+    &__break-line {
+      width: 100%;
+    }
+  }
+}

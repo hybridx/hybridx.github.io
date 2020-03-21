@@ -1,7 +1,8 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     mode: 'production',
@@ -13,21 +14,28 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
     },
     optimization : {
-        minimizer: true,
         minimizer: [new TerserPlugin()],
         usedExports: true,
     },
     module: {
         rules: [
             {
-                test: /\.m?js$/,
-                exclude: /(node_modules|bower_components)/,
-                use: {
-                  loader: 'babel-loader',
-                  options: {
-                    presets: ['@babel/preset-env'],
-                    plugins: ['@babel/plugin-proposal-object-rest-spread']
-                  }
+                test: /\.js|.jsx?$/,
+                include: [
+                    path.resolve(__dirname, 'src')
+                ],
+                exclude: [
+                    path.resolve(__dirname, 'node_modules')
+                ],
+                loader: 'babel-loader',
+                query: {
+                    presets: [
+                    ['@babel/env', {
+                        targets: {
+                        browsers: 'last 2 chrome versions'
+                        }
+                    }]
+                    ]
                 }
             },
             {
@@ -65,14 +73,12 @@ module.exports = {
         extensions: ['.js', '.scss', '.css'],
     },
     plugins: [
+        new MiniCssExtractPlugin(),
+        new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
-            template: './src/index.html',
             filename: 'index.html',
             chunks: ['app'],
-            minify: {
-                collapseWhitespace: true,
-            },
+            template: './src/index.html',
         }),
-        new MiniCssExtractPlugin(),
-    ]
+    ],
 };

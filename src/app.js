@@ -1,5 +1,6 @@
 // SCSS imports
-import './main.scss';
-
+import './styles/main.scss';
 // Webcomponent imports
 import 'copyright-x/dist/copyright-x';
+// Components
+import './js/main';

@@ -1,4 +1,5 @@
 const path = require('path');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
@@ -22,14 +23,22 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.m?js$/,
-                exclude: /(node_modules|bower_components)/,
-                use: {
-                  loader: 'babel-loader',
-                  options: {
-                    presets: ['@babel/preset-env'],
-                    plugins: ['@babel/plugin-proposal-object-rest-spread']
-                  }
+                test: /\.js|.jsx?$/,
+                include: [
+                    path.resolve(__dirname, 'src')
+                ],
+                exclude: [
+                    path.resolve(__dirname, 'node_modules')
+                ],
+                loader: 'babel-loader',
+                query: {
+                    presets: [
+                    ['@babel/env', {
+                        targets: {
+                        browsers: 'last 2 chrome versions'
+                        }
+                    }]
+                    ]
                 }
             },
             {
@@ -63,10 +72,11 @@ module.exports = {
         extensions: ['.js', '.scss', '.css'],
     },
     plugins: [
+        new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
             filename: 'index.html',
             chunks: ['app'],
             template: './src/index.html',
         }),
-    ]
+    ],
 };
