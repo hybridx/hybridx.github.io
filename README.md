@@ -28,6 +28,31 @@
 
 Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/hybridx/hybridx.github.io/issues). 
 
+## Usage
+
+### Install packages
+```
+npm install
+```
+
+### To run production build run
+```
+npm run build
+```
+
+### For development
+```
+npm run dev
+```
+
+### Run test
+```
+npm run test
+```
+
+
+
+
 ## Show your support
 
 Give a ⭐️ if this project helped you!
