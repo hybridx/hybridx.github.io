@@ -51,12 +51,6 @@ npm run test
 ```
 
 
-
-
-## Show your support
-
-Give a ⭐️ if this project helped you!
-
 ## 📝 License
 
 Copyright © 2020 [Deepesh Nair <byakuyan58@gmail.com>](https://github.com/hybridx).<br />

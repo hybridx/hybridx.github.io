@@ -10,7 +10,8 @@ module.exports = {
     devtool: 'inline-source-map',
     output: {
         filename: 'bundle.js',
-        path: path.resolve(__dirname, 'dist'),
+        path: path.resolve( __dirname, 'dist' ),
+        publicPath: '/',
     },
     devServer: {
         contentBase: path.join(__dirname, 'dist'),
@@ -18,28 +19,24 @@ module.exports = {
         port: 4200,
     },
     optimization : {
-        usedExports: true
+        usedExports: true,
     },
     module: {
         rules: [
             {
-                test: /\.js|.jsx?$/,
-                include: [
-                    path.resolve(__dirname, 'src')
-                ],
-                exclude: [
-                    path.resolve(__dirname, 'node_modules')
-                ],
-                loader: 'babel-loader',
-                query: {
-                    presets: [
-                    ['@babel/env', {
-                        targets: {
-                        browsers: 'last 2 chrome versions'
-                        }
-                    }]
-                    ]
+                test: /\.m?js$/,
+                exclude: /(node_modules|bower_components)/,
+                use: {
+                  loader: 'babel-loader',
+                  options: {
+                    presets: ['@babel/preset-env'],
+                    plugins: ['@babel/plugin-proposal-object-rest-spread']
+                  },
                 }
+            },
+            {
+                test: /\.(png|jpe?g|gif|svg)$/i,
+                use: 'file-loader',
             },
             {
                 test: /\.s[ac]ss$/i,
@@ -48,19 +45,6 @@ module.exports = {
                     'css-loader',
                     'sass-loader',
                   ],
-            },
-            {
-                test: /\.(svg|png|jpe?g|gif)$/i,
-                use: [
-                    {
-                        loader: 'file-loader',
-                        options: {
-                            outputPath: 'img',
-                            name: '[name].[ext]',
-                            esModule: false,
-                        },
-                    }
-                ]
             },
         ],
     },
