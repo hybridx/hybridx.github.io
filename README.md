@@ -53,5 +53,5 @@ npm run test
 
 ## 📝 License
 
-Copyright © 2020 [Deepesh Nair <byakuyan58@gmail.com>](https://github.com/hybridx).<br />
+Copyright © 2020 [Deepesh Nair](https://github.com/hybridx).<br />
 This project is [MIT](https://github.com/hybridx/hybridxhub.io.git/blob/master/LICENSE) licensed.
