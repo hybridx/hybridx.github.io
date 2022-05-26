@@ -1,6 +1,6 @@
 <h1 align="center">Welcome to hybridx.github.io 👋</h1>
 <p>
-  <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000" />
+  <img alt="Version" src="https://img.shields.io/badge/version-2.0.0-blue.svg?cacheSeconds=2592000" />
   <a href="https://github.com/hybridx/hybridxhub.io.git#readme" target="_blank">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
   </a>
@@ -11,8 +11,6 @@
     <img alt="License: MIT" src="https://img.shields.io/github/license/hybridx/hybridx.github.io" />
   </a>
 </p>
-
-> This is a personal web page
 
 ### 🏠 [Homepage](https://hybridx.github.io)
 
@@ -42,7 +40,7 @@ npm run build
 
 ### For development
 ```
-npm run dev
+npm start
 ```
 
 ### Run test
@@ -50,6 +48,9 @@ npm run dev
 npm run test
 ```
 
+### Read more
+
+- Read more here - [Wiki](https://github.com/hybridx/hybridx.github.io/wiki)
 
 ## 📝 License
 

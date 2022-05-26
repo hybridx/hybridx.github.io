@@ -1,6 +1,10 @@
 // SCSS imports
-import './styles/main.scss';
+import './main.scss';
 // Webcomponent imports
 import '@hybridxweb/copyright-x/dist/copyright-x';
 // Components
-import './js/main';
+import Footer from './components/footer';
+
+document.querySelector('#app').innerHTML = `
+  <footer>${Footer()}</footer>
+`;

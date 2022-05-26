@@ -7,7 +7,6 @@ module.exports = {
     entry: {
         app: './src/app.js',
     },
-    devtool: 'inline-source-map',
     output: {
         filename: 'bundle.js',
         path: path.resolve( __dirname, 'dist' ),
@@ -56,7 +55,7 @@ module.exports = {
         new HtmlWebpackPlugin({
             filename: 'index.html',
             chunks: ['app'],
-            template: './src/index.html',
+            template: './public/index.html',
         }),
     ],
 };
