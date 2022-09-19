@@ -1,6 +1,6 @@
 {
   "extends": ["config:base", ":semanticCommits"],
   "schedule": [
-    "every 3 months on the first day of the month"
+    "every 9 months on the first day of the month"
   ]
 }
