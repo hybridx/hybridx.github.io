@@ -12,6 +12,10 @@
   </a>
 </p>
 
+[![pages-build-deployment](https://github.com/hybridx/hybridx.github.io/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/hybridx/hybridx.github.io/actions/workflows/pages/pages-build-deployment)
+
+[![Node.js CI](https://github.com/hybridx/hybridx.github.io/actions/workflows/ci.yml/badge.svg)](https://github.com/hybridx/hybridx.github.io/actions/workflows/ci.yml)
+
 ### 🏠 [Homepage](https://hybridx.github.io)
 
 ## Author
