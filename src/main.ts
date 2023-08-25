@@ -1,6 +1,7 @@
 import './style.css'
 import logo from './logo.svg'
 import '@hybridxweb/copyright-x/dist/copyright-x';
+
 // import { setupCounter } from './counter'
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
