@@ -19,34 +19,15 @@ async function fetchGitHubRepos() {
 }
 
 function toggleTheme() {
-  const themeDropdownContainer = document.getElementById(
-    'theme-dropdown-container'
-  );
-  if (themeDropdownContainer) {
-    // Toggle the dropdown visibility
-    if (themeDropdownContainer.style.display === 'block') {
-      themeDropdownContainer.style.display = 'none';
-    } else {
-      themeDropdownContainer.style.display = 'block';
-    }
-  }
-}
-
-function changeTheme(theme: string) {
   const root = document.documentElement;
-  root.setAttribute('data-theme', theme);
-  localStorage.setItem('theme', theme);
-
+  const currentTheme = root.getAttribute('data-theme') || 'dark';
+  const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+  
+  root.setAttribute('data-theme', newTheme);
+  localStorage.setItem('theme', newTheme);
+  
   // Update theme toggle button icon based on theme
-  updateThemeToggleIcon(theme);
-
-  // Close dropdown after selection
-  const themeDropdownContainer = document.getElementById(
-    'theme-dropdown-container'
-  );
-  if (themeDropdownContainer) {
-    themeDropdownContainer.style.display = 'none';
-  }
+  updateThemeToggleIcon(newTheme);
 }
 
 function updateThemeToggleIcon(theme: string) {
@@ -90,14 +71,6 @@ function initTheme() {
 
   // Initialize theme toggle icon
   updateThemeToggleIcon(theme);
-
-  // Ensure dropdown is hidden initially
-  const themeDropdownContainer = document.getElementById(
-    'theme-dropdown-container'
-  );
-  if (themeDropdownContainer) {
-    themeDropdownContainer.style.display = 'none';
-  }
 }
 
 function animateOnScroll() {
@@ -573,7 +546,6 @@ async function renderPortfolio() {
             <a href="#experience" class="nav-link">Experience</a>
             <a href="#projects" class="nav-link">Projects</a>
             <a href="#contact" class="nav-link">Contact</a>
-            <div>
             <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <circle cx="12" cy="12" r="5"></circle>
@@ -587,17 +559,9 @@ async function renderPortfolio() {
                 <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
               </svg>
             </button>
-            </div>
-           
           </nav>
         </div>
       </header>
-      <div id="theme-dropdown-container" class="theme-dropdown-container">
-        <div id="theme-dropdown" class="theme-dropdown">
-          <button class="theme-option" onclick="changeTheme('dark')">Dark</button>
-          <button class="theme-option" onclick="changeTheme('light')">Light</button>
-        </div>
-      </div>
       <section id="hero" class="full-height">
         <div class="hero-content fade-in">
           <div class="hero-text">
@@ -1155,32 +1119,6 @@ async function renderPortfolio() {
   initParticleEffect();
   initSkillProgressBars();
   initTimelineAnimations();
-
-  // Make changeTheme function available globally
-  window.changeTheme = changeTheme;
-
-  // Close dropdown when clicking outside
-  document.addEventListener('click', (e) => {
-    const themeDropdownContainer = document.getElementById(
-      'theme-dropdown-container'
-    );
-    const themeToggle = document.getElementById('theme-toggle');
-    if (themeDropdownContainer && themeToggle) {
-      if (
-        !themeDropdownContainer.contains(e.target as Node) &&
-        !themeToggle.contains(e.target as Node)
-      ) {
-        themeDropdownContainer.style.display = 'none';
-      }
-    }
-  });
-}
-
-// Add to window object to make it accessible from HTML
-declare global {
-  interface Window {
-    changeTheme: (theme: string) => void;
-  }
 }
 
 renderPortfolio();
