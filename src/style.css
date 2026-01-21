@@ -666,14 +666,14 @@ section {
 .skill-item[data-skill="typescript"] .skill-progress { width: 85%; }
 .skill-item[data-skill="python"] .skill-progress { width: 88%; }
 .skill-item[data-skill="go"] .skill-progress { width: 75%; }
-.skill-item[data-skill="react"] .skill-progress { width: 92%; }
-.skill-item[data-skill="nodejs"] .skill-progress { width: 87%; }
-.skill-item[data-skill="vite"] .skill-progress { width: 80%; }
-.skill-item[data-skill="express"] .skill-progress { width: 85%; }
-.skill-item[data-skill="docker"] .skill-progress { width: 85%; }
-.skill-item[data-skill="kubernetes"] .skill-progress { width: 75%; }
-.skill-item[data-skill="git"] .skill-progress { width: 95%; }
-.skill-item[data-skill="linux"] .skill-progress { width: 88%; }
+.skill-item[data-skill="fastapi"] .skill-progress { width: 92%; }
+.skill-item[data-skill="postgresql"] .skill-progress { width: 88%; }
+.skill-item[data-skill="mongodb"] .skill-progress { width: 80%; }
+.skill-item[data-skill="mcp"] .skill-progress { width: 85%; }
+.skill-item[data-skill="podman"] .skill-progress { width: 90%; }
+.skill-item[data-skill="proxmox"] .skill-progress { width: 85%; }
+.skill-item[data-skill="linux"] .skill-progress { width: 92%; }
+.skill-item[data-skill="networking"] .skill-progress { width: 80%; }
 
 /* Homelab section */
 #homelab {

@@ -94,10 +94,10 @@ function animateOnScroll() {
 
 function initTypingAnimation() {
   const typingTexts = [
-    'Software Engineer',
-    'DevOps Enthusiast',
-    'Homelab Explorer',
-    'Open Source Contributor',
+    'Platform Engineer',
+    'Infrastructure Builder',
+    'Systems Thinker',
+    'DevConf India Organizer',
   ];
 
   const typingElement = document.querySelector('.typing-text');
@@ -541,8 +541,8 @@ async function renderPortfolio() {
           </div>
           <nav>
             <a href="#about" class="nav-link">About</a>
-            <a href="#skills" class="nav-link">Skills</a>
-            <a href="#homelab" class="nav-link">Homelab</a>
+            <a href="#homelab" class="nav-link">Infrastructure</a>
+            <a href="#ai-experiments" class="nav-link">AI & Experiments</a>
             <a href="#experience" class="nav-link">Experience</a>
             <a href="#projects" class="nav-link">Projects</a>
             <a href="#contact" class="nav-link">Contact</a>
@@ -609,12 +609,11 @@ async function renderPortfolio() {
           <h2 class="section-title">About Me</h2>
           <div class="about-content">
             <div class="about-text">
-              <p class="large-text">Software developer based in ${
+              <p class="large-text">I build backend systems, infrastructure tooling, and practical AI integrations. Based in ${
                 githubData.location || 'Earth'
-              } with a passion for building innovative solutions.</p>
-              <p>I have ${
-                githubData.public_repos
-              } public repositories on GitHub and love contributing to open source. My work focuses on creating elegant, efficient, and user-friendly applications.</p>
+              }.</p>
+              <p>My work centers on platform engineering—designing systems that are understandable, repairable, and observable. I run production-like infrastructure at home, experiment with LLM-based tooling (MCP servers, NL→SQL), and help organize DevConf India.</p>
+              <p>I prefer Podman over Docker, run my own Proxmox lab with proper backups and DNS, and believe good systems should explain themselves. No buzzwords, no exaggeration—just honest engineering.</p>
               <div class="social-links">
                 <a href="${
                   githubData.html_url
@@ -694,32 +693,32 @@ async function renderPortfolio() {
               </div>
 
               <div class="skill-category" data-category="frameworks">
-                <h3 class="category-title">Frameworks & Libraries</h3>
+                <h3 class="category-title">Backend & APIs</h3>
                 <div class="skill-items">
-                  <div class="skill-item" data-skill="react">
-                    <div class="skill-icon">⚛️</div>
-                    <span class="skill-name">React</span>
+                  <div class="skill-item" data-skill="fastapi">
+                    <div class="skill-icon">⚡</div>
+                    <span class="skill-name">FastAPI</span>
                     <div class="skill-bar">
                       <div class="skill-progress" data-progress="92"></div>
                     </div>
                   </div>
-                  <div class="skill-item" data-skill="nodejs">
-                    <div class="skill-icon">📗</div>
-                    <span class="skill-name">Node.js</span>
+                  <div class="skill-item" data-skill="postgresql">
+                    <div class="skill-icon">🐘</div>
+                    <span class="skill-name">PostgreSQL</span>
                     <div class="skill-bar">
-                      <div class="skill-progress" data-progress="87"></div>
+                      <div class="skill-progress" data-progress="88"></div>
                     </div>
                   </div>
-                  <div class="skill-item" data-skill="vite">
-                    <div class="skill-icon">⚡</div>
-                    <span class="skill-name">Vite</span>
+                  <div class="skill-item" data-skill="mongodb">
+                    <div class="skill-icon">🍃</div>
+                    <span class="skill-name">MongoDB</span>
                     <div class="skill-bar">
                       <div class="skill-progress" data-progress="80"></div>
                     </div>
                   </div>
-                  <div class="skill-item" data-skill="express">
-                    <div class="skill-icon">🚀</div>
-                    <span class="skill-name">Express</span>
+                  <div class="skill-item" data-skill="mcp">
+                    <div class="skill-icon">🔧</div>
+                    <span class="skill-name">MCP Servers</span>
                     <div class="skill-bar">
                       <div class="skill-progress" data-progress="85"></div>
                     </div>
@@ -728,34 +727,34 @@ async function renderPortfolio() {
               </div>
 
               <div class="skill-category" data-category="devops">
-                <h3 class="category-title">DevOps & Infrastructure</h3>
+                <h3 class="category-title">Infrastructure & Platform</h3>
                 <div class="skill-items">
-                  <div class="skill-item" data-skill="docker">
-                    <div class="skill-icon">🐳</div>
-                    <span class="skill-name">Docker</span>
+                  <div class="skill-item" data-skill="podman">
+                    <div class="skill-icon">📦</div>
+                    <span class="skill-name">Podman</span>
+                    <div class="skill-bar">
+                      <div class="skill-progress" data-progress="90"></div>
+                    </div>
+                  </div>
+                  <div class="skill-item" data-skill="proxmox">
+                    <div class="skill-icon">🖥️</div>
+                    <span class="skill-name">Proxmox VE</span>
                     <div class="skill-bar">
                       <div class="skill-progress" data-progress="85"></div>
-                    </div>
-                  </div>
-                  <div class="skill-item" data-skill="kubernetes">
-                    <div class="skill-icon">☸️</div>
-                    <span class="skill-name">Kubernetes</span>
-                    <div class="skill-bar">
-                      <div class="skill-progress" data-progress="75"></div>
-                    </div>
-                  </div>
-                  <div class="skill-item" data-skill="git">
-                    <div class="skill-icon">📋</div>
-                    <span class="skill-name">Git</span>
-                    <div class="skill-bar">
-                      <div class="skill-progress" data-progress="95"></div>
                     </div>
                   </div>
                   <div class="skill-item" data-skill="linux">
                     <div class="skill-icon">🐧</div>
                     <span class="skill-name">Linux</span>
                     <div class="skill-bar">
-                      <div class="skill-progress" data-progress="88"></div>
+                      <div class="skill-progress" data-progress="92"></div>
+                    </div>
+                  </div>
+                  <div class="skill-item" data-skill="networking">
+                    <div class="skill-icon">🌐</div>
+                    <span class="skill-name">DNS/TLS/Networking</span>
+                    <div class="skill-bar">
+                      <div class="skill-progress" data-progress="80"></div>
                     </div>
                   </div>
                 </div>
@@ -770,8 +769,8 @@ async function renderPortfolio() {
           <h2 class="section-title">Homelab & Infrastructure</h2>
           <div class="homelab-content">
             <div class="homelab-intro">
-              <p class="large-text">Experimenting with virtualization and self-hosted infrastructure</p>
-              <p>I've been diving deep into homelab projects, exploring Proxmox VE for virtualization, container orchestration, and building resilient infrastructure setups. This hands-on experience has given me insights into enterprise-level infrastructure management and modern DevOps practices.</p>
+              <p class="large-text">Production-like infrastructure at home</p>
+              <p>My Proxmox lab runs services the way real infrastructure does: proper backups, automated recovery, reverse proxies with TLS, custom DDNS, and monitoring. I use Podman for containers, maintain DNS hygiene, and design for repairability. This isn't a toy—it's a testing ground for patterns that scale.</p>
             </div>
 
             <div class="homelab-grid">
@@ -797,12 +796,12 @@ async function renderPortfolio() {
                     <path d="M13.5 3a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0ZM15 11.5c0 .55-.45 1-1 1s-1-.45-1-1 .45-1 1-1 1 .45 1 1Zm1.5-2.5c0 .55-.45 1-1 1s-1-.45-1-1 .45-1 1-1 1 .45 1 1ZM23 15.5c0 .55-.45 1-1 1s-1-.45-1-1 .45-1 1-1 1 .45 1 1Zm-2-6c0 .55-.45 1-1 1s-1-.45-1-1 .45-1 1-1 1 .45 1 1Zm-6 2c0 .55-.45 1-1 1s-1-.45-1-1 .45-1 1-1 1 .45 1 1Zm-7 6c0 .55-.45 1-1 1s-1-.45-1-1 .45-1 1-1 1 .45 1 1Zm2-4c0 .55-.45 1-1 1s-1-.45-1-1 .45-1 1-1 1 .45 1 1Z"/>
                   </svg>
                 </div>
-                <h3>Container Orchestration</h3>
-                <p>Docker Swarm and Kubernetes labs running various services including monitoring, CI/CD, and development environments</p>
+                <h3>Containers & Services</h3>
+                <p>Podman-first container deployment with systemd integration, rootless where possible. Running databases (PostgreSQL, MongoDB), APIs, reverse proxies, and custom tooling.</p>
                 <div class="homelab-tech">
-                  <span class="tech-badge">Docker</span>
-                  <span class="tech-badge">K8s</span>
-                  <span class="tech-badge">Swarm</span>
+                  <span class="tech-badge">Podman</span>
+                  <span class="tech-badge">systemd</span>
+                  <span class="tech-badge">PostgreSQL</span>
                 </div>
               </div>
 
@@ -812,12 +811,12 @@ async function renderPortfolio() {
                     <path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/>
                   </svg>
                 </div>
-                <h3>Monitoring & Observability</h3>
-                <p>Comprehensive monitoring stack with Prometheus, Grafana, and ELK stack for logs and performance metrics</p>
+                <h3>Backups & Recovery</h3>
+                <p>Automated backup strategies, failure recovery procedures, and monitoring to catch issues before they become outages. Systems designed to be restored, not rebuilt.</p>
                 <div class="homelab-tech">
-                  <span class="tech-badge">Prometheus</span>
-                  <span class="tech-badge">Grafana</span>
-                  <span class="tech-badge">ELK Stack</span>
+                  <span class="tech-badge">Backups</span>
+                  <span class="tech-badge">Monitoring</span>
+                  <span class="tech-badge">Automation</span>
                 </div>
               </div>
 
@@ -827,12 +826,12 @@ async function renderPortfolio() {
                     <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
                   </svg>
                 </div>
-                <h3>Network & Security</h3>
-                <p>VLANs, firewall rules, VPN setup, and network segmentation experiments for learning enterprise networking</p>
+                <h3>DNS & Networking</h3>
+                <p>Custom DDNS service, reverse proxy setup with automatic TLS (Caddy/Traefik), proper domain management, and network segmentation for service isolation.</p>
                 <div class="homelab-tech">
-                  <span class="tech-badge">VLANs</span>
-                  <span class="tech-badge">pfSense</span>
-                  <span class="tech-badge">WireGuard</span>
+                  <span class="tech-badge">DDNS</span>
+                  <span class="tech-badge">Caddy</span>
+                  <span class="tech-badge">TLS</span>
                 </div>
               </div>
             </div>
@@ -840,20 +839,94 @@ async function renderPortfolio() {
             <div class="homelab-stats">
               <div class="stat-group">
                 <div class="homelab-stat">
-                  <span class="stat-number">12+</span>
-                  <span class="stat-label">Virtual Machines</span>
+                  <span class="stat-number">Proxmox</span>
+                  <span class="stat-label">Hypervisor</span>
                 </div>
                 <div class="homelab-stat">
-                  <span class="stat-number">25+</span>
-                  <span class="stat-label">Docker Containers</span>
+                  <span class="stat-number">Podman</span>
+                  <span class="stat-label">Containers</span>
                 </div>
                 <div class="homelab-stat">
-                  <span class="stat-number">5+</span>
-                  <span class="stat-label">Self-hosted Services</span>
+                  <span class="stat-number">PostgreSQL</span>
+                  <span class="stat-label">Primary DB</span>
                 </div>
                 <div class="homelab-stat">
-                  <span class="stat-number">99.9%</span>
-                  <span class="stat-label">Uptime Target</span>
+                  <span class="stat-number">Custom DDNS</span>
+                  <span class="stat-label">DNS Management</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="ai-experiments">
+        <div class="section-container fade-in">
+          <h2 class="section-title">AI & Experiments</h2>
+          <div class="homelab-content">
+            <div class="homelab-intro">
+              <p class="large-text">Practical AI integration, not hype</p>
+              <p>I experiment with LLM-based systems that solve real problems: natural language to SQL for read-only queries, MCP (Model Context Protocol) servers for tool integration, vector search with pgvector, and schema-aware APIs. Focus on explainability, safety boundaries, and usefulness.</p>
+            </div>
+
+            <div class="homelab-grid">
+              <div class="homelab-card proxmox-card">
+                <div class="homelab-icon">
+                  <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M21 2H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h7v2H8v2h8v-2h-2v-2h7c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H3V4h18v12z"/>
+                  </svg>
+                </div>
+                <h3>Natural Language → SQL</h3>
+                <p>LLM-powered query generation from natural language. Schema-aware, read-only by design, with explain plans and safety checks. Built for exploration, not production writes.</p>
+                <div class="homelab-tech">
+                  <span class="tech-badge">PostgreSQL</span>
+                  <span class="tech-badge">FastAPI</span>
+                  <span class="tech-badge">LLMs</span>
+                </div>
+              </div>
+
+              <div class="homelab-card container-card">
+                <div class="homelab-icon">
+                  <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M20 2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM8 20H4v-4h4v4zm0-6H4v-4h4v4zm0-6H4V4h4v4zm6 12h-4v-4h4v4zm0-6h-4v-4h4v4zm0-6h-4V4h4v4zm6 12h-4v-4h4v4zm0-6h-4v-4h4v4zm0-6h-4V4h4v4z"/>
+                  </svg>
+                </div>
+                <h3>MCP Servers</h3>
+                <p>Model Context Protocol servers using FastAPI. Exposes database schemas, file systems, and custom tools to LLMs in a structured, controlled way. Think API design for AI agents.</p>
+                <div class="homelab-tech">
+                  <span class="tech-badge">MCP</span>
+                  <span class="tech-badge">FastAPI</span>
+                  <span class="tech-badge">Tools</span>
+                </div>
+              </div>
+
+              <div class="homelab-card monitoring-card">
+                <div class="homelab-icon">
+                  <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                  </svg>
+                </div>
+                <h3>Vector Search & Embeddings</h3>
+                <p>pgvector for similarity search over text, code, and documentation. Experimenting with retrieval-augmented generation (RAG) and semantic search patterns.</p>
+                <div class="homelab-tech">
+                  <span class="tech-badge">pgvector</span>
+                  <span class="tech-badge">Embeddings</span>
+                  <span class="tech-badge">RAG</span>
+                </div>
+              </div>
+
+              <div class="homelab-card network-card">
+                <div class="homelab-icon">
+                  <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+                  </svg>
+                </div>
+                <h3>POCs & Internal Demos</h3>
+                <p>Built working prototypes for internal discussions: schema exposure APIs, tool-based LLM interactions, and AI integration patterns. Focused on evolvability, not one-off scripts.</p>
+                <div class="homelab-tech">
+                  <span class="tech-badge">FastAPI</span>
+                  <span class="tech-badge">Design</span>
+                  <span class="tech-badge">Systems</span>
                 </div>
               </div>
             </div>
@@ -870,24 +943,23 @@ async function renderPortfolio() {
                 <div class="timeline-marker">
                   <div class="timeline-icon">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                      <path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/>
                     </svg>
                   </div>
                 </div>
                 <div class="timeline-content">
                   <div class="timeline-header">
-                    <h3 class="timeline-title">Software Engineer</h3>
-                    <div class="timeline-company">RedHat</div>
-                    <div class="timeline-date">2022 - Present</div>
+                    <h3 class="timeline-title">DevConf India Organizer</h3>
+                    <div class="timeline-company">Community Leadership</div>
+                    <div class="timeline-date">2024 - Present</div>
                   </div>
                   <div class="timeline-description">
-                    <p>Contributing to open-source enterprise solutions, working on containerization technologies, and implementing DevOps practices for scalable infrastructure.</p>
+                    <p>Core organizing member for DevConf India 2025 & 2026 (~2000 attendees). Focus on operational readiness, crowd control systems, communication tooling, and event coordination at scale.</p>
                     <div class="timeline-skills">
-                      <span class="skill-tag">Kubernetes</span>
-                      <span class="skill-tag">OpenShift</span>
-                      <span class="skill-tag">Go</span>
-                      <span class="skill-tag">Python</span>
-                      <span class="skill-tag">CI/CD</span>
+                      <span class="skill-tag">Event Ops</span>
+                      <span class="skill-tag">Leadership</span>
+                      <span class="skill-tag">Coordination</span>
+                      <span class="skill-tag">Community</span>
                     </div>
                   </div>
                 </div>
@@ -897,24 +969,24 @@ async function renderPortfolio() {
                 <div class="timeline-marker">
                   <div class="timeline-icon">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M13.5 3a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0ZM15 11.5c0 .55-.45 1-1 1s-1-.45-1-1 .45-1 1-1 1 .45 1 1Z"/>
+                      <path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"/>
                     </svg>
                   </div>
                 </div>
                 <div class="timeline-content">
                   <div class="timeline-header">
-                    <h3 class="timeline-title">Full Stack Developer</h3>
-                    <div class="timeline-company">Previous Company</div>
-                    <div class="timeline-date">2020 - 2022</div>
+                    <h3 class="timeline-title">Platform & Backend Engineering</h3>
+                    <div class="timeline-company">Various Roles</div>
+                    <div class="timeline-date">2020 - Present</div>
                   </div>
                   <div class="timeline-description">
-                    <p>Developed modern web applications using React and Node.js, implemented responsive designs, and optimized application performance.</p>
+                    <p>Building backend systems, infrastructure tooling, and developer platforms. API design, database architecture (PostgreSQL, MongoDB), containerization with Podman, and CI/CD pipelines.</p>
                     <div class="timeline-skills">
-                      <span class="skill-tag">React</span>
-                      <span class="skill-tag">Node.js</span>
-                      <span class="skill-tag">TypeScript</span>
-                      <span class="skill-tag">MongoDB</span>
-                      <span class="skill-tag">AWS</span>
+                      <span class="skill-tag">FastAPI</span>
+                      <span class="skill-tag">PostgreSQL</span>
+                      <span class="skill-tag">Podman</span>
+                      <span class="skill-tag">Python</span>
+                      <span class="skill-tag">Linux</span>
                     </div>
                   </div>
                 </div>
@@ -924,23 +996,23 @@ async function renderPortfolio() {
                 <div class="timeline-marker">
                   <div class="timeline-icon">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/>
+                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
                     </svg>
                   </div>
                 </div>
                 <div class="timeline-content">
                   <div class="timeline-header">
-                    <h3 class="timeline-title">Computer Science Education</h3>
-                    <div class="timeline-company">University</div>
-                    <div class="timeline-date">2018 - 2022</div>
+                    <h3 class="timeline-title">AI Experiments & MCP Development</h3>
+                    <div class="timeline-company">Personal R&D</div>
+                    <div class="timeline-date">2023 - Ongoing</div>
                   </div>
                   <div class="timeline-description">
-                    <p>Focused on software engineering, algorithms, and distributed systems. Participated in hackathons and open-source contributions.</p>
+                    <p>Built MCP-compatible servers, NL→SQL systems, and vector search prototypes. Focus on practical integration patterns, not demos. Schema-aware APIs, embeddings, and tool-based LLM interactions.</p>
                     <div class="timeline-skills">
-                      <span class="skill-tag">Data Structures</span>
-                      <span class="skill-tag">Algorithms</span>
-                      <span class="skill-tag">System Design</span>
-                      <span class="skill-tag">Databases</span>
+                      <span class="skill-tag">MCP</span>
+                      <span class="skill-tag">FastAPI</span>
+                      <span class="skill-tag">pgvector</span>
+                      <span class="skill-tag">LLMs</span>
                     </div>
                   </div>
                 </div>
@@ -956,17 +1028,17 @@ async function renderPortfolio() {
                 </div>
                 <div class="timeline-content">
                   <div class="timeline-header">
-                    <h3 class="timeline-title">Started Homelab Journey</h3>
-                    <div class="timeline-company">Personal Project</div>
-                    <div class="timeline-date">2023 - Ongoing</div>
+                    <h3 class="timeline-title">Proxmox Lab & Self-Hosting</h3>
+                    <div class="timeline-company">Infrastructure Learning</div>
+                    <div class="timeline-date">2021 - Ongoing</div>
                   </div>
                   <div class="timeline-description">
-                    <p>Began experimenting with self-hosted infrastructure, virtualization technologies, and enterprise-grade homelab setups using Proxmox VE.</p>
+                    <p>Built production-like infrastructure at home: Proxmox virtualization, Podman containers, custom DDNS service, automated backups, and proper DNS/TLS setup. Learn by operating real systems.</p>
                     <div class="timeline-skills">
                       <span class="skill-tag">Proxmox VE</span>
-                      <span class="skill-tag">Docker</span>
-                      <span class="skill-tag">Networking</span>
-                      <span class="skill-tag">Monitoring</span>
+                      <span class="skill-tag">Podman</span>
+                      <span class="skill-tag">DDNS</span>
+                      <span class="skill-tag">Backups</span>
                     </div>
                   </div>
                 </div>
