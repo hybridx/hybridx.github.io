@@ -1,4 +1,4 @@
-# robots.txt for hybridx.github.io
+# robots.txt for 181094.xyz
 # Deepesh Nair (Hybridx) - Platform Engineer
 
 User-agent: *
@@ -10,7 +10,7 @@ Disallow: /*.json$
 Crawl-delay: 0
 
 # Sitemap
-Sitemap: https://hybridx.github.io/sitemap.xml
+Sitemap: https://181094.xyz/sitemap.xml
 
 # Specific bot instructions
 User-agent: Googlebot
