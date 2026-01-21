@@ -785,7 +785,6 @@ async function renderPortfolio() {
                 <p>Multi-node Proxmox Virtual Environment setup with high availability, automated backups, and ZFS storage pools</p>
                 <div class="homelab-tech">
                   <span class="tech-badge">Proxmox VE</span>
-                  <span class="tech-badge">ZFS</span>
                   <span class="tech-badge">Clustering</span>
                 </div>
               </div>
@@ -830,7 +829,6 @@ async function renderPortfolio() {
                 <p>Custom DDNS service, reverse proxy setup with automatic TLS (Caddy/Traefik), proper domain management, and network segmentation for service isolation.</p>
                 <div class="homelab-tech">
                   <span class="tech-badge">DDNS</span>
-                  <span class="tech-badge">Caddy</span>
                   <span class="tech-badge">TLS</span>
                 </div>
               </div>
