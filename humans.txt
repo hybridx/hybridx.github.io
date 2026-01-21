@@ -1,0 +1,39 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    Name: Deepesh Nair
+    Title: Platform Engineer
+    Location: Pune, Maharashtra, India
+    Site: https://hybridx.github.io
+    GitHub: github.com/hybridx
+    Twitter: @_deepeshnair
+
+# THANKS
+
+    DevConf India Community
+    Open Source Contributors
+    FastAPI Framework
+    Proxmox VE Team
+
+# SITE
+
+    Standards: HTML5, CSS3, ES6+, TypeScript
+    Components: Vite, TypeScript, FastAPI
+    Software: VS Code, Cursor AI, Git
+    Infrastructure: Proxmox VE, Podman, PostgreSQL
+    Hosting: GitHub Pages
+    Domain: 181094.xyz
+
+# FOCUS AREAS
+
+    Platform Engineering
+    Backend Systems (FastAPI, PostgreSQL)
+    Infrastructure (Proxmox, Podman, Linux)
+    AI Integration (MCP Servers, NL→SQL, pgvector)
+    DevConf India Organization
+    Self-hosted Infrastructure
+    Custom DDNS Service
+    Production-like Homelab
+
