@@ -1,16 +1,50 @@
-<h1 align="center">Welcome to hybridx.github.io 👋</h1>
+# Deepesh Nair (Hybridx) - Platform Engineer
 
 [![pages-build-deployment](https://github.com/hybridx/hybridx.github.io/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/hybridx/hybridx.github.io/actions/workflows/pages/pages-build-deployment)
 
-### 🏠 [Homepage](https://hybridx.github.io)
+Platform engineer specializing in backend systems, infrastructure, and practical AI integration. Core organizer for **DevConf India 2025/2026**.
 
-## Author
+🌐 **Website:** [hybridx.github.io](https://hybridx.github.io) | [181094.xyz](https://181094.xyz)
 
-👤 **Deepesh Nair <byakuyan58@gmail.com>**
+## About Me
 
-* Website: https://hybridx.github.io
-* Github: [@hybridx](https://github.com/hybridx)
-* LinkedIn: [@hybridx](https://linkedin.com/in/hybridx)
+I build backend systems, infrastructure tooling, and practical AI integrations. My work centers on platform engineering—designing systems that are understandable, repairable, and observable.
+
+### Core Focus Areas
+
+- **Platform Engineering** - Backend systems, API design with FastAPI
+- **Infrastructure** - Proxmox virtualization, Podman containers (not Docker), custom DDNS
+- **Databases** - PostgreSQL, MongoDB, pgvector for embeddings
+- **AI Integration** - MCP servers, Natural Language → SQL, RAG systems
+- **DevOps** - Production-like homelab with automated backups, monitoring, TLS
+- **Community** - DevConf India organizing team (~2000 attendees)
+
+### Tech Stack
+
+**Backend:** Python, FastAPI, Go  
+**Infrastructure:** Proxmox VE, Podman, systemd, Linux  
+**Databases:** PostgreSQL (primary), MongoDB, pgvector  
+**AI/ML:** MCP (Model Context Protocol), LLM integration, embeddings  
+**Networking:** Custom DDNS, Caddy/Traefik reverse proxy, DNS management  
+**Tools:** Git, CI/CD, automated backups
+
+## Projects & Work
+
+- **MCP Servers** - FastAPI-based Model Context Protocol servers for structured LLM tool integration
+- **NL→SQL System** - Schema-aware natural language to SQL query generation (read-only, safe)
+- **Proxmox Homelab** - Production-like infrastructure with automated backups, monitoring, proper DNS/TLS
+- **Custom DDNS Service** - Self-hosted dynamic DNS with failure recovery
+- **DevConf India** - Core organizing member for 2025/2026 events
+
+## Contact
+
+👤 **Deepesh Nair** (Hybridx)
+
+- 🌐 Website: [hybridx.github.io](https://hybridx.github.io)
+- 🌐 Domain: [181094.xyz](https://181094.xyz)
+- 💻 GitHub: [@hybridx](https://github.com/hybridx)
+- 🐦 Twitter: [@_deepeshnair](https://twitter.com/_deepeshnair)
+- 📅 Calendar: [calendly.com/hybridx](https://calendly.com/hybridx)
 
 ## 🤝 Contributing
 
