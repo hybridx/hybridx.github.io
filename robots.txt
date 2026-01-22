@@ -1,5 +1,6 @@
 # robots.txt for 181094.xyz
 # Deepesh Nair (Hybridx) - Platform Engineer
+# Last updated: 2026-01-22
 
 User-agent: *
 Allow: /
@@ -9,8 +10,11 @@ Disallow: /*.json$
 # Crawl-delay
 Crawl-delay: 0
 
-# Sitemap
+# Sitemap location
 Sitemap: https://181094.xyz/sitemap.xml
+
+# Host directive for search engines
+Host: https://181094.xyz
 
 # Specific bot instructions
 User-agent: Googlebot
