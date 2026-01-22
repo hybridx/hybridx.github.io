@@ -1335,38 +1335,6 @@ footer {
   transform: translateY(-2px);
 }
 
-/* Custom cursor */
-.cursor {
-  width: 20px;
-  height: 20px;
-  border: 2px solid var(--primary-color);
-  border-radius: 50%;
-  position: fixed;
-  pointer-events: none;
-  transform: translate(-50%, -50%);
-  transition: width 0.3s ease, height 0.3s ease, border-color 0.3s ease;
-  transition-property: width, height, border-color, background-color; /* Explicitly exclude transform from transitions */
-  z-index: 9999;
-  display: none !important; /* Disabled for now - hide custom cursor */
-  will-change: transform; /* Optimize for frequent position updates */
-}
-
-/* Only show custom cursor on desktop devices with mouse */
-/* @media (min-width: 769px) and (pointer: fine) {
-  .cursor {
-    display: block;
-  }
-} */
-
-.cursor-hover {
-  width: 40px;
-  height: 40px;
-  border-color: var(--secondary-color);
-  background-color: rgba(255, 255, 255, 0.1);
-  transform: translate(-50%, -50%);
-  transition-property: width, height, border-color, background-color; /* Keep transform instant */
-}
-
 /* Animation classes */
 .fade-in {
   opacity: 0;
@@ -1696,9 +1664,8 @@ img.lazy.loaded {
 /* Print styles */
 @media print {
   .loading-screen,
-  .cursor,
   .theme-toggle,
-  .particle-canvas,
+  #particle-canvas,
   .nav-link,
   .scroll-indicator {
     display: none !important;
@@ -1776,10 +1743,6 @@ img.lazy.loaded {
   
   nav {
     gap: 1rem;
-  }
-  
-  .cursor {
-    display: none;
   }
 }
 

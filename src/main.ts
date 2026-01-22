@@ -137,6 +137,12 @@ function initTypingAnimation() {
 }
 
 function initParticleEffect() {
+  // Skip particle effect on mobile for performance
+  if (window.innerWidth < 768) return;
+
+  // Respect reduced motion preferences
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
   const canvas = document.createElement('canvas');
   canvas.id = 'particle-canvas';
   canvas.style.position = 'fixed';
@@ -157,6 +163,10 @@ function initParticleEffect() {
     size: number;
     opacity: number;
   }> = [];
+  let animationId: number;
+  let lastTime = 0;
+  const targetFPS = 30;
+  const frameInterval = 1000 / targetFPS;
 
   function resizeCanvas() {
     canvas.width = window.innerWidth;
@@ -167,28 +177,30 @@ function initParticleEffect() {
     return {
       x: Math.random() * canvas.width,
       y: Math.random() * canvas.height,
-      vx: (Math.random() - 0.5) * 0.5,
-      vy: (Math.random() - 0.5) * 0.5,
-      size: Math.random() * 2 + 1,
-      opacity: Math.random() * 0.5 + 0.1,
+      vx: (Math.random() - 0.5) * 0.3,
+      vy: (Math.random() - 0.5) * 0.3,
+      size: Math.random() * 1.5 + 0.5,
+      opacity: Math.random() * 0.4 + 0.1,
     };
   }
 
   function initParticles() {
     particles = [];
-    for (let i = 0; i < 50; i++) {
+    // Reduced particle count based on screen size
+    const particleCount = Math.min(25, Math.floor(window.innerWidth / 60));
+    for (let i = 0; i < particleCount; i++) {
       particles.push(createParticle());
     }
   }
 
   function updateParticles() {
-    particles.forEach((particle) => {
+    for (const particle of particles) {
       particle.x += particle.vx;
       particle.y += particle.vy;
 
       if (particle.x < 0 || particle.x > canvas.width) particle.vx *= -1;
       if (particle.y < 0 || particle.y > canvas.height) particle.vy *= -1;
-    });
+    }
   }
 
   function drawParticles() {
@@ -196,51 +208,69 @@ function initParticleEffect() {
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    particles.forEach((particle) => {
-      if (!ctx) return;
+    // Draw particles
+    for (const particle of particles) {
       ctx.beginPath();
       ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
       ctx.fillStyle = `rgba(100, 108, 255, ${particle.opacity})`;
       ctx.fill();
-    });
+    }
 
-    // Draw connections
-    particles.forEach((particle, i) => {
-      particles.slice(i + 1).forEach((otherParticle) => {
-        if (!ctx) return;
-        const distance = Math.sqrt(
-          Math.pow(particle.x - otherParticle.x, 2) +
-            Math.pow(particle.y - otherParticle.y, 2)
-        );
+    // Draw connections (optimized with distance squared to avoid sqrt)
+    const connectionDistSq = 8100; // 90^2
+    const len = particles.length;
+    for (let i = 0; i < len - 1; i++) {
+      const p1 = particles[i];
+      for (let j = i + 1; j < len; j++) {
+        const p2 = particles[j];
+        const dx = p1.x - p2.x;
+        const dy = p1.y - p2.y;
+        const distSq = dx * dx + dy * dy;
 
-        if (distance < 100) {
+        if (distSq < connectionDistSq) {
+          const opacity = 0.08 * (1 - distSq / connectionDistSq);
           ctx.beginPath();
-          ctx.moveTo(particle.x, particle.y);
-          ctx.lineTo(otherParticle.x, otherParticle.y);
-          ctx.strokeStyle = `rgba(100, 108, 255, ${
-            0.1 * (1 - distance / 100)
-          })`;
-          ctx.lineWidth = 1;
+          ctx.moveTo(p1.x, p1.y);
+          ctx.lineTo(p2.x, p2.y);
+          ctx.strokeStyle = `rgba(100, 108, 255, ${opacity})`;
+          ctx.lineWidth = 0.5;
           ctx.stroke();
         }
-      });
-    });
+      }
+    }
   }
 
-  function animate() {
+  function animate(currentTime: number) {
+    animationId = requestAnimationFrame(animate);
+
+    // Throttle to target FPS
+    const elapsed = currentTime - lastTime;
+    if (elapsed < frameInterval) return;
+    lastTime = currentTime - (elapsed % frameInterval);
+
     updateParticles();
     drawParticles();
-    requestAnimationFrame(animate);
   }
 
   resizeCanvas();
   initParticles();
-  animate();
+  animationId = requestAnimationFrame(animate);
 
+  // Debounced resize handler
+  let resizeTimeout: ReturnType<typeof setTimeout>;
   window.addEventListener('resize', () => {
-    resizeCanvas();
-    initParticles();
-  });
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      // Stop particles on mobile
+      if (window.innerWidth < 768) {
+        cancelAnimationFrame(animationId);
+        canvas.remove();
+        return;
+      }
+      resizeCanvas();
+      initParticles();
+    }, 200);
+  }, { passive: true });
 }
 
 function initSkillProgressBars() {
@@ -530,7 +560,6 @@ async function renderPortfolio() {
       </div>
     </div>
     <div class="portfolio">
-      <div class="cursor"></div>
       
       <header>
         <div class="header-container">
@@ -1151,27 +1180,6 @@ async function renderPortfolio() {
   document
     .getElementById('theme-toggle')
     ?.addEventListener('click', toggleTheme);
-
-  // Initialize custom cursor
-  const cursor = document.querySelector('.cursor');
-  document.addEventListener('mousemove', (e) => {
-    console.log(e.clientX, e.clientY);
-    if (cursor) {
-      (cursor as HTMLElement).style.left = e.clientX + 'px';
-      (cursor as HTMLElement).style.top = e.clientY + 'px';
-    }
-  });
-
-  // Add hover effect for links
-  const links = document.querySelectorAll('a, button');
-  links.forEach((link) => {
-    link.addEventListener('mouseenter', () => {
-      if (cursor) cursor.classList.add('cursor-hover');
-    });
-    link.addEventListener('mouseleave', () => {
-      if (cursor) cursor.classList.remove('cursor-hover');
-    });
-  });
 
   // Initialize performance optimizations and accessibility
   initErrorBoundaries();
