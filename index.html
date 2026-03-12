@@ -2,16 +2,14 @@
 <html lang="en">
 
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3DC9SET6CV"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag () { dataLayer.push(arguments); }
-    gtag('js', new Date());
-
-    gtag('config', 'G-3DC9SET6CV');
-  </script>
   <meta charset="UTF-8" />
+  
+  <!-- Preconnect to critical origins for faster resource loading -->
+  <link rel="preconnect" href="https://avatars.githubusercontent.com" crossorigin />
+  <link rel="dns-prefetch" href="https://avatars.githubusercontent.com" />
+  
+  <!-- Preload LCP image (hero profile picture) -->
+  <link rel="preload" as="image" href="https://avatars.githubusercontent.com/u/12994292?v=4" fetchpriority="high" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -170,26 +168,39 @@
     }
     </script>
 
-  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" />
-  <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
-  <script type="text/javascript">
-    window.onload = function ()
-    {
-      Calendly.initBadgeWidget({
-        url: "https://calendly.com/hybridx",
-        text: "Schedule time with me",
-        color: "#0069ff",
-        textColor: "#ffffff",
-        branding: false,
-      });
-    };
-  </script>
-  <script type="module" crossorigin src="/assets/index-CMHW1mdT.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/index-B5sldDa9.css">
+  <script type="module" crossorigin src="/assets/index-D_wb8MNs.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-CyhLLqYg.css">
 </head>
 
 <body>
   <div id="app"></div>
+  
+  <!-- Deferred: Google Analytics (non-blocking) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3DC9SET6CV"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-3DC9SET6CV');
+  </script>
+  
+  <!-- Deferred: Calendly widget (loads after main content) -->
+  <link rel="preload" href="https://assets.calendly.com/assets/external/widget.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="https://assets.calendly.com/assets/external/widget.css" /></noscript>
+  <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" defer></script>
+  <script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function() {
+      if (typeof Calendly !== 'undefined') {
+        Calendly.initBadgeWidget({
+          url: "https://calendly.com/hybridx",
+          text: "Schedule time with me",
+          color: "#0069ff",
+          textColor: "#ffffff",
+          branding: false,
+        });
+      }
+    });
+  </script>
 </body>
 
 </html>
