@@ -369,50 +369,6 @@ function initTimelineAnimations() {
   });
 }
 
-function initLoadingScreen() {
-  const loadingScreen = document.getElementById('loading-screen');
-  const portfolio = document.querySelector('.portfolio');
-  const loadingMessages = [
-    'Loading amazing content...',
-    'Fetching GitHub data...',
-    'Initializing animations...',
-    'Almost ready...',
-    'Welcome!',
-  ];
-
-  let messageIndex = 0;
-  const loadingMessage = document.querySelector('.loading-message');
-
-  // Cycle through loading messages
-  const messageInterval = setInterval(() => {
-    if (messageIndex < loadingMessages.length - 1) {
-      messageIndex++;
-      if (loadingMessage) {
-        loadingMessage.textContent = loadingMessages[messageIndex];
-      }
-    }
-  }, 800);
-
-  // Hide loading screen after content is ready
-  setTimeout(() => {
-    clearInterval(messageInterval);
-
-    if (loadingScreen) {
-      loadingScreen.classList.add('hidden');
-    }
-
-    if (portfolio) {
-      portfolio.classList.add('loaded');
-    }
-
-    // Remove loading screen from DOM after animation
-    setTimeout(() => {
-      if (loadingScreen) {
-        loadingScreen.remove();
-      }
-    }, 800);
-  }, 3000);
-}
 
 function initPageTransitions() {
   // Smooth scroll for navigation links
@@ -534,17 +490,6 @@ function initErrorBoundaries() {
   // Global error handler
   window.addEventListener('error', (e) => {
     console.error('Portfolio Error:', e.error);
-
-    // Graceful degradation for critical features
-    const loadingScreen = document.getElementById('loading-screen');
-    if (loadingScreen) {
-      loadingScreen.classList.add('hidden');
-    }
-
-    const portfolio = document.querySelector('.portfolio');
-    if (portfolio) {
-      portfolio.classList.add('loaded');
-    }
   });
 
   // Promise rejection handler
@@ -583,31 +528,13 @@ async function renderPortfolio() {
   initTheme();
 
   document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-    <div id="loading-screen" class="loading-screen">
-      <div class="loading-container">
-        <div class="loading-logo">
-          <img src="${logo}" alt="Logo" class="loading-logo-img" />
-        </div>
-        <div class="loading-spinner">
-          <div class="spinner-ring"></div>
-          <div class="spinner-ring"></div>
-          <div class="spinner-ring"></div>
-        </div>
-        <div class="loading-text">
-          <span class="loading-message">Loading amazing content...</span>
-          <div class="loading-progress">
-            <div class="loading-bar"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="portfolio">
+    <div class="portfolio loaded">
       
       <header>
         <div class="header-container">
           <div class="logo-container">
             <a href="/">
-              <img src="${logo}" class="logo" alt="Hybridx logo" />
+              <img src="${logo}" class="logo" alt="Hybridx logo" width="104" height="26" />
             </a>
           </div>
           <nav>
@@ -634,7 +561,7 @@ async function renderPortfolio() {
         </div>
       </header>
       <section id="hero" class="full-height">
-        <div class="hero-content fade-in">
+        <div class="hero-content">
           <div class="hero-text">
             <h1 class="hero-title">Hi, I'm <span class="highlight">${PROFILE.name}</span></h1>
             <p class="hero-tagline">
@@ -656,7 +583,7 @@ async function renderPortfolio() {
             </div>
           </div>
           <div class="hero-image">
-            <img src="${PROFILE.avatar_url}" class="profile-img" alt="Profile picture" />
+            <img src="${PROFILE.avatar_url}" class="profile-img" alt="Profile picture" width="300" height="300" fetchpriority="high" />
           </div>
         </div>
         <div class="scroll-indicator">
@@ -1225,8 +1152,7 @@ async function renderPortfolio() {
   initAccessibilityEnhancements();
   initPerformanceMonitoring();
 
-  // Initialize loading screen and page transitions
-  initLoadingScreen();
+  // Initialize page transitions
   initPageTransitions();
 
   // Initialize animations and effects
