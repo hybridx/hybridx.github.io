@@ -215,7 +215,7 @@ function renderSkillCategory(title: string, skills: Array<{ icon: string; name: 
       <div class="flex flex-col gap-3">
         ${skills.map(s => `
           <div class="flex items-center gap-3 p-3 rounded-tx bg-tx-surface-alt hover:translate-x-1 transition-transform">
-            <div class="w-10 h-10 rounded-tx bg-tx-primary flex items-center justify-center text-white font-bold text-sm shrink-0">${s.icon}</div>
+            <div class="w-10 h-10 rounded-tx bg-tx-primary/10 border border-tx-primary/20 flex items-center justify-center text-tx-primary font-bold text-sm shrink-0">${s.icon}</div>
             <span class="font-medium flex-1">${s.name}</span>
             <tx-progress value="${s.progress}" show-value size="sm" color="primary" style="width:120px;flex-shrink:0"></tx-progress>
           </div>
@@ -228,7 +228,7 @@ function renderSkillCategory(title: string, skills: Array<{ icon: string; name: 
 function renderCard(icon: string, title: string, description: string, badges: string[], accent: string) {
   return `
     <tx-card accent="${accent}" interactive>
-      <div class="w-14 h-14 rounded-tx-lg bg-tx-primary flex items-center justify-center text-white mb-4 shadow-tx-sm">${icon}</div>
+      <div class="w-14 h-14 rounded-tx-lg bg-tx-primary/10 border border-tx-primary/20 flex items-center justify-center text-tx-primary mb-4 shadow-tx-sm">${icon}</div>
       <h3 class="text-tx-text text-xl font-semibold mb-2">${title}</h3>
       <p class="text-tx-text-secondary leading-relaxed mb-4">${description}</p>
       <div class="flex flex-wrap gap-2">
@@ -408,32 +408,44 @@ async function renderPortfolio() {
           </div>
           <div class="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-6 mb-12">
             ${renderCard(
-              `<svg width="40" height="40" viewBox="0 0 100 100" fill="currentColor"><circle cx="50" cy="50" r="45" stroke="currentColor" stroke-width="8" fill="none"/><text x="50" y="58" text-anchor="middle" font-size="20" font-weight="bold">PVE</text></svg>`,
+              `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>`,
               'Proxmox VE Cluster', 'Multi-node setup with high availability, automated backups, and ZFS storage pools.',
               ['Proxmox VE', 'Clustering'], 'primary'
             )}
             ${renderCard(
-              `<svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 3a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0ZM15 11.5c0 .55-.45 1-1 1s-1-.45-1-1 .45-1 1-1 1 .45 1 1Z"/></svg>`,
+              `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>`,
               'Containers & Services', 'Podman-first deployment with systemd integration, rootless containers, databases, APIs, and reverse proxies.',
               ['Podman', 'systemd', 'PostgreSQL'], 'primary'
             )}
             ${renderCard(
-              `<svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg>`,
+              `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>`,
               'Backups & Recovery', 'Automated backup strategies, failure recovery, and monitoring. Systems designed to be restored, not rebuilt.',
               ['Backups', 'Monitoring', 'Automation'], 'primary'
             )}
             ${renderCard(
-              `<svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>`,
+              `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>`,
               'DNS & Networking', 'Custom DDNS, reverse proxy with automatic TLS, domain management, and network segmentation.',
               ['DDNS', 'TLS'], 'primary'
             )}
           </div>
           <tx-card flat>
             <div class="grid grid-cols-[repeat(auto-fit,minmax(150px,1fr))] gap-6">
-              <div class="text-center p-4 rounded-tx bg-tx-surface-alt"><span class="block text-2xl font-bold text-tx-primary mb-1">Proxmox</span><span class="text-sm text-tx-text-muted">Hypervisor</span></div>
-              <div class="text-center p-4 rounded-tx bg-tx-surface-alt"><span class="block text-2xl font-bold text-tx-primary mb-1">Podman</span><span class="text-sm text-tx-text-muted">Containers</span></div>
-              <div class="text-center p-4 rounded-tx bg-tx-surface-alt"><span class="block text-2xl font-bold text-tx-primary mb-1">PostgreSQL</span><span class="text-sm text-tx-text-muted">Primary DB</span></div>
-              <div class="text-center p-4 rounded-tx bg-tx-surface-alt"><span class="block text-2xl font-bold text-tx-primary mb-1">Custom DDNS</span><span class="text-sm text-tx-text-muted">DNS Management</span></div>
+              <div class="text-center p-4 rounded-tx bg-tx-surface-alt border border-tx-border hover:border-tx-primary/40 transition-colors">
+                <svg class="mx-auto mb-2 text-tx-primary" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+                <span class="block text-lg font-bold text-tx-primary mb-0.5">Proxmox</span><span class="text-sm text-tx-text-muted">Hypervisor</span>
+              </div>
+              <div class="text-center p-4 rounded-tx bg-tx-surface-alt border border-tx-border hover:border-tx-primary/40 transition-colors">
+                <svg class="mx-auto mb-2 text-tx-primary" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+                <span class="block text-lg font-bold text-tx-primary mb-0.5">Podman</span><span class="text-sm text-tx-text-muted">Containers</span>
+              </div>
+              <div class="text-center p-4 rounded-tx bg-tx-surface-alt border border-tx-border hover:border-tx-primary/40 transition-colors">
+                <svg class="mx-auto mb-2 text-tx-primary" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+                <span class="block text-lg font-bold text-tx-primary mb-0.5">PostgreSQL</span><span class="text-sm text-tx-text-muted">Primary DB</span>
+              </div>
+              <div class="text-center p-4 rounded-tx bg-tx-surface-alt border border-tx-border hover:border-tx-primary/40 transition-colors">
+                <svg class="mx-auto mb-2 text-tx-primary" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                <span class="block text-lg font-bold text-tx-primary mb-0.5">Custom DDNS</span><span class="text-sm text-tx-text-muted">DNS Management</span>
+              </div>
             </div>
           </tx-card>
         </div>
@@ -451,22 +463,22 @@ async function renderPortfolio() {
           </div>
           <div class="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-6">
             ${renderCard(
-              `<svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor"><path d="M21 2H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h7v2H8v2h8v-2h-2v-2h7c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H3V4h18v12z"/></svg>`,
+              `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>`,
               'Natural Language → SQL', 'LLM-powered query generation. Schema-aware, read-only by design, with explain plans and safety checks.',
               ['PostgreSQL', 'FastAPI', 'LLMs'], 'primary'
             )}
             ${renderCard(
-              `<svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM8 20H4v-4h4v4zm0-6H4v-4h4v4zm0-6H4V4h4v4zm6 12h-4v-4h4v4zm0-6h-4v-4h4v4zm0-6h-4V4h4v4zm6 12h-4v-4h4v4zm0-6h-4v-4h4v4zm0-6h-4V4h4v4z"/></svg>`,
+              `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>`,
               'MCP Servers', 'Model Context Protocol servers using FastAPI. Exposes schemas, file systems, and tools to LLMs in a structured way.',
               ['MCP', 'FastAPI', 'Tools'], 'primary'
             )}
             ${renderCard(
-              `<svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>`,
+              `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>`,
               'Vector Search & Embeddings', 'pgvector for similarity search over text, code, and documentation. Experimenting with RAG and semantic search.',
               ['pgvector', 'Embeddings', 'RAG'], 'primary'
             )}
             ${renderCard(
-              `<svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg>`,
+              `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>`,
               'POCs & Internal Demos', 'Working prototypes for schema exposure APIs, tool-based LLM interactions, and AI integration patterns.',
               ['FastAPI', 'Design', 'Systems'], 'primary'
             )}
@@ -486,24 +498,24 @@ async function renderPortfolio() {
                 { title: 'DevConf India Organizer', company: 'Community Leadership', date: '2024 - Present',
                   desc: 'Core organizing member for DevConf India 2025 & 2026 (~2000 attendees). Focus on operational readiness, crowd control systems, communication tooling.',
                   tags: ['Event Ops', 'Leadership', 'Coordination', 'Community'], color: 'primary',
-                  icon: `<path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/>` },
+                  icon: `<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="9" cy="7" r="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M23 21v-2a4 4 0 0 0-3-3.87" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 3.13a4 4 0 0 1 0 7.75" fill="none" stroke="currentColor" stroke-width="2"/>` },
                 { title: 'Platform & Backend Engineering', company: 'Various Roles', date: '2020 - Present',
                   desc: 'Building backend systems, infrastructure tooling, and developer platforms. API design, database architecture, containerization with Podman.',
                   tags: ['FastAPI', 'PostgreSQL', 'Podman', 'Python', 'Linux'], color: 'primary',
-                  icon: `<path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"/>` },
+                  icon: `<rect x="2" y="7" width="20" height="14" rx="2" ry="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" fill="none" stroke="currentColor" stroke-width="2"/>` },
                 { title: 'AI Experiments & MCP Development', company: 'Personal R&D', date: '2023 - Ongoing',
                   desc: 'Built MCP-compatible servers, NL→SQL systems, and vector search prototypes. Focus on practical integration patterns.',
-                  tags: ['MCP', 'FastAPI', 'pgvector', 'LLMs'], color: 'success',
-                  icon: `<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>` },
+                  tags: ['MCP', 'FastAPI', 'pgvector', 'LLMs'], color: 'primary',
+                  icon: `<path d="M12 2a4 4 0 0 1 4 4c0 1.95-1.4 3.57-3.25 3.93" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 2a4 4 0 0 0-4 4c0 1.95 1.4 3.57 3.25 3.93" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12" y1="18" x2="12" y2="22" stroke="currentColor" stroke-width="2"/><line x1="8" y1="22" x2="16" y2="22" stroke="currentColor" stroke-width="2"/><path d="M9 18h6" stroke="currentColor" stroke-width="2"/><path d="M9 14h6" stroke="currentColor" stroke-width="2"/>` },
                 { title: 'Proxmox Lab & Self-Hosting', company: 'Infrastructure Learning', date: '2021 - Ongoing',
                   desc: 'Built production-like infrastructure at home: Proxmox virtualization, Podman containers, custom DDNS, automated backups.',
                   tags: ['Proxmox VE', 'Podman', 'DDNS', 'Backups'], color: 'primary',
-                  icon: `<path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0L19.2 12l-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/>` },
+                  icon: `<rect x="2" y="2" width="20" height="8" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><rect x="2" y="14" width="20" height="8" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><line x1="6" y1="6" x2="6.01" y2="6" stroke="currentColor" stroke-width="2"/><line x1="6" y1="18" x2="6.01" y2="18" stroke="currentColor" stroke-width="2"/>` },
               ].map(item => `
                 <div class="timeline-item">
                   <div class="timeline-marker">
                     <div class="w-12 h-12 rounded-full bg-tx-primary flex items-center justify-center text-white shadow-tx-md border-4 border-tx-bg hover:scale-110 transition-transform">
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">${item.icon}</svg>
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">${item.icon}</svg>
                     </div>
                   </div>
                   <div class="timeline-content-wrapper w-[45%]">

@@ -32,8 +32,11 @@
   --font-tx-mono: 'Red Hat Mono', monospace;
 }
 
-/* Base */
+/* Force accent = primary so the entire page uses one color */
 :root {
+  --tx-accent: var(--tx-primary);
+  --tx-accent-soft: var(--tx-primary-soft);
+
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -115,6 +118,20 @@ body {
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
   50% { transform: translateY(-10px); }
+}
+
+/* Smooth section transitions */
+section {
+  position: relative;
+}
+
+/* Card icon hover lift */
+tx-card[interactive]:hover .w-14 {
+  transform: translateY(-2px) scale(1.05);
+  transition: transform 0.3s ease;
+}
+tx-card .w-14 {
+  transition: transform 0.3s ease;
 }
 
 /* Fade-in on scroll */
