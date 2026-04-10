@@ -182,6 +182,30 @@ tx-card .w-14 {
   z-index: 10;
 }
 
+/* Mobile menu */
+.mobile-menu {
+  flex-direction: column;
+  padding: 0.5rem 1rem 1rem;
+  gap: 0;
+  border-top: 1px solid var(--tx-border);
+}
+.mobile-nav-link {
+  display: block;
+  padding: 0.75rem 0.5rem;
+  color: var(--tx-text);
+  font-weight: 500;
+  text-decoration: none;
+  border-bottom: 1px solid var(--tx-border);
+  transition: color 0.2s ease;
+}
+.mobile-nav-link:last-child {
+  border-bottom: none;
+}
+.mobile-nav-link:hover,
+.mobile-nav-link:active {
+  color: var(--tx-primary);
+}
+
 /* Skip link */
 .skip-link {
   position: fixed;
@@ -225,10 +249,24 @@ tx-card .w-14 {
   .timeline-item {
     flex-direction: row !important;
     padding-left: 50px;
+    margin: 1.5rem 0;
   }
   .timeline-marker {
     left: 20px;
     transform: translateX(-50%);
   }
   .timeline-content-wrapper { width: 100% !important; }
+}
+@media (max-width: 640px) {
+  .timeline::before { left: 16px; }
+  .timeline-item { padding-left: 42px; }
+  .timeline-marker { left: 16px; }
+  .timeline-marker > div {
+    width: 2rem !important;
+    height: 2rem !important;
+  }
+  .timeline-marker svg {
+    width: 14px !important;
+    height: 14px !important;
+  }
 }

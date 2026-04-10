@@ -195,6 +195,29 @@ function initPageTransitions() {
   });
 }
 
+function initMobileMenu() {
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  if (!toggle || !menu) return;
+
+  toggle.addEventListener('click', () => {
+    const isOpen = !menu.classList.contains('hidden');
+    menu.classList.toggle('hidden', isOpen);
+    menu.classList.toggle('flex', !isOpen);
+    toggle.innerHTML = isOpen
+      ? '<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>'
+      : '<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>';
+  });
+
+  menu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      menu.classList.add('hidden');
+      menu.classList.remove('flex');
+      toggle.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>';
+    });
+  });
+}
+
 function initAccessibilityEnhancements() {
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     document.documentElement.style.setProperty('--animation-duration', '0s');
@@ -217,7 +240,7 @@ function renderSkillCategory(title: string, skills: Array<{ icon: string; name: 
           <div class="flex items-center gap-3 p-3 rounded-tx bg-tx-surface-alt hover:translate-x-1 transition-transform">
             <div class="w-10 h-10 rounded-tx bg-tx-primary/10 border border-tx-primary/20 flex items-center justify-center text-tx-primary font-bold text-sm shrink-0">${s.icon}</div>
             <span class="font-medium flex-1">${s.name}</span>
-            <tx-progress value="${s.progress}" show-value size="sm" color="primary" style="width:120px;flex-shrink:0"></tx-progress>
+            <tx-progress value="${s.progress}" show-value size="sm" color="primary" class="w-20 sm:w-[120px] shrink-0"></tx-progress>
           </div>
         `).join('')}
       </div>
@@ -275,28 +298,41 @@ async function renderPortfolio() {
 
       <!-- Header -->
       <header class="fixed top-0 left-0 w-full z-50 backdrop-blur-md shadow-tx-sm transition-colors duration-300" style="background-color:var(--header-bg)">
-        <div class="w-full mx-auto flex justify-between items-center px-8 py-3">
+        <div class="w-full mx-auto flex justify-between items-center px-4 md:px-8 py-3">
           <a href="/" class="bg-white rounded-[20px] px-4 inline-flex items-center">
             <img src="${logo}" class="h-12 hover:scale-110 transition-transform" alt="Hybridx logo" width="104" height="26" />
           </a>
-          <nav class="flex items-center gap-6 flex-wrap">
-            <a href="#about" class="text-tx-text font-medium hover:text-tx-primary transition-colors relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-tx-primary after:transition-all hover:after:w-full">About</a>
-            <a href="#homelab" class="text-tx-text font-medium hover:text-tx-primary transition-colors relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-tx-primary after:transition-all hover:after:w-full">Infrastructure</a>
-            <a href="#ai-experiments" class="text-tx-text font-medium hover:text-tx-primary transition-colors relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-tx-primary after:transition-all hover:after:w-full">AI & Experiments</a>
-            <a href="#experience" class="text-tx-text font-medium hover:text-tx-primary transition-colors relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-tx-primary after:transition-all hover:after:w-full">Experience</a>
-            <a href="#projects" class="text-tx-text font-medium hover:text-tx-primary transition-colors relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-tx-primary after:transition-all hover:after:w-full">Projects</a>
-            <a href="#contact" class="text-tx-text font-medium hover:text-tx-primary transition-colors relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-tx-primary after:transition-all hover:after:w-full">Contact</a>
+          <div class="flex items-center gap-3">
+            <nav id="desktop-nav" class="hidden md:flex items-center gap-6">
+              <a href="#about" class="nav-link text-tx-text font-medium hover:text-tx-primary transition-colors relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-tx-primary after:transition-all hover:after:w-full">About</a>
+              <a href="#homelab" class="nav-link text-tx-text font-medium hover:text-tx-primary transition-colors relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-tx-primary after:transition-all hover:after:w-full">Infrastructure</a>
+              <a href="#ai-experiments" class="nav-link text-tx-text font-medium hover:text-tx-primary transition-colors relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-tx-primary after:transition-all hover:after:w-full">AI & Experiments</a>
+              <a href="#experience" class="nav-link text-tx-text font-medium hover:text-tx-primary transition-colors relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-tx-primary after:transition-all hover:after:w-full">Experience</a>
+              <a href="#projects" class="nav-link text-tx-text font-medium hover:text-tx-primary transition-colors relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-tx-primary after:transition-all hover:after:w-full">Projects</a>
+              <a href="#contact" class="nav-link text-tx-text font-medium hover:text-tx-primary transition-colors relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-tx-primary after:transition-all hover:after:w-full">Contact</a>
+            </nav>
             <button id="theme-toggle" class="p-2 rounded-full border-none cursor-pointer bg-transparent text-tx-text hover:bg-tx-surface-alt hover:scale-110 hover:rotate-15 transition-all" aria-label="Toggle theme"></button>
-          </nav>
+            <button id="menu-toggle" class="p-2 rounded-full border-none cursor-pointer bg-transparent text-tx-text hover:bg-tx-surface-alt transition-all md:hidden" aria-label="Toggle menu">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+            </button>
+          </div>
         </div>
+        <nav id="mobile-menu" class="mobile-menu hidden md:hidden">
+          <a href="#about" class="mobile-nav-link">About</a>
+          <a href="#homelab" class="mobile-nav-link">Infrastructure</a>
+          <a href="#ai-experiments" class="mobile-nav-link">AI & Experiments</a>
+          <a href="#experience" class="mobile-nav-link">Experience</a>
+          <a href="#projects" class="mobile-nav-link">Projects</a>
+          <a href="#contact" class="mobile-nav-link">Contact</a>
+        </nav>
       </header>
 
       <!-- Hero -->
-      <section id="hero" class="min-h-screen flex items-center pt-24 px-8">
-        <div class="max-w-[1200px] mx-auto w-full flex items-center justify-between gap-16 max-lg:flex-col">
-          <div class="flex-1 text-left">
-            <h1 class="text-5xl font-bold mb-4 max-md:text-3xl">Hi, I'm <span class="text-tx-primary">${PROFILE.name}</span></h1>
-            <p class="text-xl text-tx-text-secondary mb-4 flex items-center gap-1">
+      <section id="hero" class="min-h-screen flex items-center pt-24 px-4 md:px-8">
+        <div class="max-w-[1200px] mx-auto w-full flex items-center justify-between gap-8 lg:gap-16 max-lg:flex-col max-lg:text-center">
+          <div class="flex-1 text-left max-lg:text-center">
+            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">Hi, I'm <span class="text-tx-primary">${PROFILE.name}</span></h1>
+            <p class="text-lg sm:text-xl text-tx-text-secondary mb-4 flex items-center gap-1 max-lg:justify-center">
               <span class="typing-text">Software Engineer</span>
               <span class="cursor-blink text-tx-primary font-bold">|</span>
             </p>
@@ -306,16 +342,16 @@ async function renderPortfolio() {
                 181094.xyz
               </a>
             </p>
-            <div class="flex gap-3 max-sm:flex-col">
+            <div class="flex gap-3 max-sm:flex-col max-lg:justify-center">
               <a href="#projects" class="no-underline"><tx-button variant="primary" size="lg">View My Work</tx-button></a>
               <a href="#contact" class="no-underline"><tx-button variant="ghost" size="lg">Get in Touch</tx-button></a>
             </div>
           </div>
-          <div class="flex-1 flex justify-center min-h-[310px]">
-            <img src="${PROFILE.avatar_url}" class="w-72 h-72 rounded-full object-cover border-4 border-tx-primary shadow-tx-lg bg-tx-surface" alt="Profile picture" width="300" height="300" fetchpriority="high" style="animation:float 6s ease-in-out infinite" />
+          <div class="flex-1 flex justify-center">
+            <img src="${PROFILE.avatar_url}" class="w-48 h-48 sm:w-60 sm:h-60 lg:w-72 lg:h-72 rounded-full object-cover border-4 border-tx-primary shadow-tx-lg bg-tx-surface" alt="Profile picture" width="300" height="300" fetchpriority="high" style="animation:float 6s ease-in-out infinite" />
           </div>
         </div>
-        <div class="scroll-indicator absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4">
+        <div class="scroll-indicator absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 max-sm:hidden">
           <div class="mouse"><div class="wheel"></div></div>
           <div class="arrow flex flex-col items-center gap-1"><span></span><span></span><span></span></div>
         </div>
@@ -324,10 +360,10 @@ async function renderPortfolio() {
       <tx-divider spacing="lg"></tx-divider>
 
       <!-- About -->
-      <section id="about" class="min-h-screen flex items-center py-20 px-8">
+      <section id="about" class="min-h-screen flex items-center py-12 md:py-20 px-4 md:px-8">
         <div class="max-w-[1200px] mx-auto w-full fade-in">
-          <h2 class="text-4xl font-bold text-center mb-12 relative inline-block w-full after:absolute after:bottom-[-10px] after:left-1/2 after:-translate-x-1/2 after:w-12 after:h-0.5 after:bg-tx-primary">About Me</h2>
-          <div class="flex gap-16 text-left max-lg:flex-col">
+          <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 md:mb-12 relative inline-block w-full after:absolute after:bottom-[-10px] after:left-1/2 after:-translate-x-1/2 after:w-12 after:h-0.5 after:bg-tx-primary">About Me</h2>
+          <div class="flex gap-8 lg:gap-16 text-left max-lg:flex-col">
             <div class="flex-1">
               <p class="text-xl leading-relaxed mb-6">I build backend systems, infrastructure tooling, and practical AI integrations. Based in ${PROFILE.location || 'Earth'}.</p>
               <p class="text-tx-text-secondary leading-relaxed mb-4">My work centers on platform engineering—designing systems that are understandable, repairable, and observable. I run production-like infrastructure at home, experiment with LLM-based tooling (MCP servers, NL→SQL), and help organize DevConf India.</p>
@@ -370,10 +406,10 @@ async function renderPortfolio() {
       <tx-divider spacing="lg"></tx-divider>
 
       <!-- Skills -->
-      <section id="skills" class="min-h-screen flex items-center py-20 px-8 bg-tx-surface-alt">
+      <section id="skills" class="min-h-screen flex items-center py-12 md:py-20 px-4 md:px-8 bg-tx-surface-alt">
         <div class="max-w-[1200px] mx-auto w-full fade-in">
-          <h2 class="text-4xl font-bold text-center mb-12 relative inline-block w-full after:absolute after:bottom-[-10px] after:left-1/2 after:-translate-x-1/2 after:w-12 after:h-0.5 after:bg-tx-primary">Skills & Technologies</h2>
-          <div class="grid grid-cols-[repeat(auto-fit,minmax(320px,1fr))] gap-6 text-left max-md:grid-cols-1">
+          <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 md:mb-12 relative inline-block w-full after:absolute after:bottom-[-10px] after:left-1/2 after:-translate-x-1/2 after:w-12 after:h-0.5 after:bg-tx-primary">Skills & Technologies</h2>
+          <div class="grid grid-cols-1 md:grid-cols-[repeat(auto-fit,minmax(320px,1fr))] gap-6 text-left">
             ${renderSkillCategory('Languages', [
               { icon: 'JS', name: 'JavaScript', progress: 90 },
               { icon: 'TS', name: 'TypeScript', progress: 85 },
@@ -399,14 +435,14 @@ async function renderPortfolio() {
       <tx-divider spacing="lg"></tx-divider>
 
       <!-- Homelab -->
-      <section id="homelab" class="min-h-screen flex items-center py-20 px-8">
+      <section id="homelab" class="min-h-screen flex items-center py-12 md:py-20 px-4 md:px-8">
         <div class="max-w-[1200px] mx-auto w-full fade-in">
-          <h2 class="text-4xl font-bold text-center mb-12 relative inline-block w-full after:absolute after:bottom-[-10px] after:left-1/2 after:-translate-x-1/2 after:w-12 after:h-0.5 after:bg-tx-primary">Homelab & Infrastructure</h2>
-          <div class="text-center max-w-3xl mx-auto mb-16">
+          <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 md:mb-12 relative inline-block w-full after:absolute after:bottom-[-10px] after:left-1/2 after:-translate-x-1/2 after:w-12 after:h-0.5 after:bg-tx-primary">Homelab & Infrastructure</h2>
+          <div class="text-center max-w-3xl mx-auto mb-8 md:mb-16">
             <p class="text-xl leading-relaxed mb-4">Production-like infrastructure at home</p>
             <p class="text-tx-text-secondary leading-relaxed">My Proxmox lab runs services the way real infrastructure does: proper backups, automated recovery, reverse proxies with TLS, custom DDNS, and monitoring.</p>
           </div>
-          <div class="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-6 mb-12">
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-6 mb-8 md:mb-12">
             ${renderCard(
               `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>`,
               'Proxmox VE Cluster', 'Multi-node setup with high availability, automated backups, and ZFS storage pools.',
@@ -429,7 +465,7 @@ async function renderPortfolio() {
             )}
           </div>
           <tx-card flat>
-            <div class="grid grid-cols-[repeat(auto-fit,minmax(150px,1fr))] gap-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
               <div class="text-center p-4 rounded-tx bg-tx-surface-alt border border-tx-border hover:border-tx-primary/40 transition-colors">
                 <svg class="mx-auto mb-2 text-tx-primary" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
                 <span class="block text-lg font-bold text-tx-primary mb-0.5">Proxmox</span><span class="text-sm text-tx-text-muted">Hypervisor</span>
@@ -454,14 +490,14 @@ async function renderPortfolio() {
       <tx-divider spacing="lg"></tx-divider>
 
       <!-- AI & Experiments -->
-      <section id="ai-experiments" class="min-h-screen flex items-center py-20 px-8 bg-tx-surface-alt">
+      <section id="ai-experiments" class="min-h-screen flex items-center py-12 md:py-20 px-4 md:px-8 bg-tx-surface-alt">
         <div class="max-w-[1200px] mx-auto w-full fade-in">
-          <h2 class="text-4xl font-bold text-center mb-12 relative inline-block w-full after:absolute after:bottom-[-10px] after:left-1/2 after:-translate-x-1/2 after:w-12 after:h-0.5 after:bg-tx-primary">AI & Experiments</h2>
-          <div class="text-center max-w-3xl mx-auto mb-16">
+          <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 md:mb-12 relative inline-block w-full after:absolute after:bottom-[-10px] after:left-1/2 after:-translate-x-1/2 after:w-12 after:h-0.5 after:bg-tx-primary">AI & Experiments</h2>
+          <div class="text-center max-w-3xl mx-auto mb-8 md:mb-16">
             <p class="text-xl leading-relaxed mb-4">Practical AI integration, not hype</p>
             <p class="text-tx-text-secondary leading-relaxed">I experiment with LLM-based systems that solve real problems: natural language to SQL, MCP servers for tool integration, vector search with pgvector, and schema-aware APIs.</p>
           </div>
-          <div class="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-6">
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-6">
             ${renderCard(
               `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>`,
               'Natural Language → SQL', 'LLM-powered query generation. Schema-aware, read-only by design, with explain plans and safety checks.',
@@ -489,9 +525,9 @@ async function renderPortfolio() {
       <tx-divider spacing="lg"></tx-divider>
 
       <!-- Experience -->
-      <section id="experience" class="min-h-screen flex items-center py-20 px-8">
+      <section id="experience" class="min-h-screen flex items-center py-12 md:py-20 px-4 md:px-8">
         <div class="max-w-[1200px] mx-auto w-full fade-in">
-          <h2 class="text-4xl font-bold text-center mb-12 relative inline-block w-full after:absolute after:bottom-[-10px] after:left-1/2 after:-translate-x-1/2 after:w-12 after:h-0.5 after:bg-tx-primary">Experience & Journey</h2>
+          <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 md:mb-12 relative inline-block w-full after:absolute after:bottom-[-10px] after:left-1/2 after:-translate-x-1/2 after:w-12 after:h-0.5 after:bg-tx-primary">Experience & Journey</h2>
           <div class="max-w-4xl mx-auto py-8">
             <div class="timeline">
               ${[
@@ -541,10 +577,10 @@ async function renderPortfolio() {
       <tx-divider spacing="lg"></tx-divider>
 
       <!-- Projects -->
-      <section id="projects" class="min-h-screen flex items-center py-20 px-8 bg-tx-surface-alt">
+      <section id="projects" class="min-h-screen flex items-center py-12 md:py-20 px-4 md:px-8 bg-tx-surface-alt">
         <div class="max-w-[1200px] mx-auto w-full fade-in">
-          <h2 class="text-4xl font-bold text-center mb-12 relative inline-block w-full after:absolute after:bottom-[-10px] after:left-1/2 after:-translate-x-1/2 after:w-12 after:h-0.5 after:bg-tx-primary">Selected Projects</h2>
-          <div class="grid grid-cols-[repeat(auto-fill,minmax(320px,1fr))] gap-6 max-md:grid-cols-1">
+          <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 md:mb-12 relative inline-block w-full after:absolute after:bottom-[-10px] after:left-1/2 after:-translate-x-1/2 after:w-12 after:h-0.5 after:bg-tx-primary">Selected Projects</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[repeat(auto-fill,minmax(320px,1fr))] gap-6">
             ${REPOS.map(r => renderProjectCard(r)).join('')}
           </div>
           <div class="text-center mt-12">
@@ -558,9 +594,9 @@ async function renderPortfolio() {
       <tx-divider spacing="lg"></tx-divider>
 
       <!-- Contact -->
-      <section id="contact" class="min-h-screen flex items-center py-20 px-8">
+      <section id="contact" class="min-h-screen flex items-center py-12 md:py-20 px-4 md:px-8">
         <div class="max-w-3xl mx-auto w-full text-center fade-in">
-          <h2 class="text-4xl font-bold mb-12 relative inline-block after:absolute after:bottom-[-10px] after:left-1/2 after:-translate-x-1/2 after:w-12 after:h-0.5 after:bg-tx-primary">Get in Touch</h2>
+          <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-8 md:mb-12 relative inline-block after:absolute after:bottom-[-10px] after:left-1/2 after:-translate-x-1/2 after:w-12 after:h-0.5 after:bg-tx-primary">Get in Touch</h2>
           <p class="text-xl leading-relaxed mb-4">Interested in collaborating?</p>
           <p class="text-tx-text-secondary leading-relaxed mb-8">I'm always open to discussing new projects, creative ideas or opportunities to be part of your vision.</p>
           <div class="flex gap-4 justify-center max-sm:flex-col">
@@ -584,6 +620,7 @@ async function renderPortfolio() {
 
   document.getElementById('theme-toggle')?.addEventListener('click', toggleTheme);
   updateThemeToggleIcon(document.documentElement.getAttribute('data-theme') || 'dark');
+  initMobileMenu();
   initPageTransitions();
   animateOnScroll();
   initTypingAnimation();
